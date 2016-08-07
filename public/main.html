@@ -1,0 +1,58 @@
+<!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h1>Discover The Action</h1>
+            <p>Use this nightlife app to find out which bars people are going to, and to let everyone know where you will be tonight!</p>
+            <div class="input-group input-group-lg">
+                <input ng-model="address" type="text" class="form-control" type="text" placeholder="Search..." aria-label="...">
+                <div class="input-group-btn">
+                <!-- Buttons -->
+                    <button ng-click="getBars(address)" class="btn btn-default btn-md"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <button ng-click="getBars(defaultAddress)" class="btn btn-default btn-md"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+              </div>
+            </div>
+        </header>
+        <div ng-hide="bars" class="alert alert-success text-center">
+              <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>        
+              <p>Fill in the city you would like to search, or click the button on the right to use your current location.</p></strong>
+        </div>
+
+        <hr>
+
+        <!-- Title -->
+        <div ng-show="bars" class="row">
+            <div class="col-lg-12">
+                <h3>Bars in the area:</h3>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div ng-show="bars" class="alert alert-success text-center">
+              <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>        
+              <p>You can only RSVP at one place per night. Click once to RSVP, click again to remove your RSVP</p></strong>
+        </div>
+
+        <!-- Page Features -->
+        <div class="row text-center">
+
+            <div ng-repeat="bar in bars" class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <img class="image" src="{{bar.image_url}}" alt="">
+                    <div class="caption">
+                        <div class="name">
+                            <h3>{{bar.name}}</h3>
+                        </div>
+                        <div>
+                            <p>Attendance: <strong>{{attendance[0].attendance[$index]}}</strong></p>
+                        </div>
+                        <div class="snippet">
+                            <p>{{bar.snippet_text}}</p>
+                        </div>
+                        <p>
+                            <a href="" ng-click="rsvp($index)" class="btn btn-primary">RSVP!</a> <a href="{{bar.url}}" target="_blank" class="btn btn-default">More Info</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
